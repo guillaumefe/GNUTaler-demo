@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  taler-merchant:
+    build:
+      context: .
+      dockerfile: Dockerfile.merchant
+    image: taler_merchant_installer:latest
+    container_name: taler_merchant_installer
+    volumes:
+      - ./install_taler_merchant.sh:/home/docker/install_taler_merchant.sh  # Updated path
+    init: true
+
+  taler-exchange:
+    build:
+      context: .
+      dockerfile: Dockerfile.exchange
+    image: taler_exchange_installer:latest
+    container_name: taler_exchange_installer
+    volumes:
+      - ./install_taler_exchange.sh:/home/docker/install_taler_exchange.sh
+    init: true
+
+  apk-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.apkserver
+    image: apk_server:latest
+    container_name: apk_server
+    ports:
+      - "8080:80"
+    init: true
+
+  index-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.indexserver
+    image: index_server:latest
+    container_name: index_server
+    ports:
+      - "8090:80"
+    init: true

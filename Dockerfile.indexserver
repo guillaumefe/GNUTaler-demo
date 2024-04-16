@@ -1,0 +1,14 @@
+# Use Nginx image to serve the index page
+FROM nginx:latest
+
+# Set working directory
+WORKDIR /usr/share/nginx/html
+
+# Copy the HTML file into the Nginx directory to be served
+COPY ./index.html /usr/share/nginx/html/index.html
+
+# Configure Nginx to serve the index page
+RUN echo "server { listen 80; location / { root /usr/share/nginx/html; index index.html; } }" > /etc/nginx/conf.d/default.conf
+
+# Expose port 80
+EXPOSE 80

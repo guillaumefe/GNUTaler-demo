@@ -1,0 +1,42 @@
+# Use the official Debian Bookworm image as a base
+FROM debian:bookworm
+
+# Avoid warnings by switching to noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    sudo \
+    lsb-release \
+    ca-certificates \
+    apt-transport-https \
+    software-properties-common \
+    postgresql \
+    --no-install-recommends \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Setup sudo to allow no-password sudo for "sudo" group
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+# Create a user to run the installer script
+RUN adduser --disabled-password --gecos '' docker \
+    && adduser docker sudo
+
+# Copy the installation script into the container
+COPY install_taler_exchange.sh /home/docker/install_taler_exchange.sh
+
+# Change permissions to execute the script
+RUN chmod +x /home/docker/install_taler_exchange.sh \
+    && chown docker:docker /home/docker/install_taler_exchange.sh
+
+# Switch to docker user
+USER docker
+
+# Set working directory
+WORKDIR /home/docker
+
+# Use entrypoint to start the script
+ENTRYPOINT ["./install_taler_exchange.sh"]
