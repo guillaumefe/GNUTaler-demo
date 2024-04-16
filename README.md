@@ -14,7 +14,7 @@ Clone this repository to your local machine. This repository contains all necess
 ```bash
 git clone https://yourrepository.com/taler-services.git
 cd taler-services
-
+```
 
 ### Step 2: Prepare the Scripts and HTML Files
 Ensure that the installation scripts (`install_taler_merchant.sh` and `install_taler_exchange.sh`) and the `index.html` file for the Index Server are present in the project directory. Update these files as necessary to suit your configuration needs.
@@ -24,6 +24,7 @@ Use Docker Compose to build the Docker images for each service:
 
 ```bash
 docker-compose build
+```
 
 This command reads the `docker-compose.yml` file in your project directory and builds Docker images for the merchant, exchange, APK server, and index server.
 
@@ -32,11 +33,13 @@ Once the images are built, start the services using Docker Compose:
 
 ```bash
 docker-compose up
+```
 
 This command starts all services defined in `docker-compose.yml`. You can add `-d` to run them in the background:
 
 ```bash
 docker-compose up -d
+```
 
 ### Step 5: Verify the Services
 Ensure that all services are running correctly:
@@ -54,3 +57,4 @@ If you encounter issues with starting the services, check the Docker container l
 
 ```bash
 docker logs <container_name>
+```
