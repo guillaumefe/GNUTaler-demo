@@ -7,9 +7,29 @@
 <body>
     <h1>Taler Services</h1>
     <ul>
-        <li><a href="http://localhost:8888/">Merchant Backend</a></li>
-        <li><a href="http://localhost:8889/">Exchange Service</a></li>
-        <li><a href="http://localhost:8080/taler-wallet.apk">Download Wallet APK</a></li>
+        <li><a href="#" onclick="redirectToMerchantBackend()">Merchant Backend</a></li>
+        <li><a href="#" onclick="redirectToExchangeService()">Exchange Service</a></li>
+        <li><a href="#" onclick="downloadWallet()">Download Taler Wallet</a></li>
     </ul>
+
+    <script>
+        // Fonction pour la redirection vers le backend du marchand
+        function redirectToMerchantBackend() {
+            // Redirection vers l'URL spécifique du backend du marchand
+            window.location.href = "http://localhost:8888/";
+        }
+
+        // Fonction pour la redirection vers le service d'échange
+        function redirectToExchangeService() {
+            // Redirection vers l'URL spécifique du service d'échange
+            window.location.href = "http://localhost:8889/";
+        }
+
+        // Fonction pour le téléchargement du portefeuille Taler
+        function downloadWallet() {
+            // Redirection vers l'URL de téléchargement du portefeuille Taler
+            window.location.href = "https://taler.net/fr/wallet.html";
+        }
+    </script>
 </body>
 </html>
