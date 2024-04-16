@@ -20,16 +20,6 @@ services:
       - ./install_taler_exchange.sh:/home/docker/install_taler_exchange.sh
     init: true
 
-  apk-server:
-    build:
-      context: .
-      dockerfile: Dockerfile.apkserver
-    image: apk_server:latest
-    container_name: apk_server
-    ports:
-      - "8080:80"
-    init: true
-
   index-server:
     build:
       context: .
