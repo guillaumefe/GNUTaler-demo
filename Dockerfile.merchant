@@ -27,7 +27,7 @@ RUN adduser --disabled-password --gecos '' docker \
     && adduser docker sudo
 
 # Copy the installation script into the container
-COPY install_taler_merchant.sh /home/docker/install_taler_merchant.sh  # Updated filename here
+COPY install_taler_merchant.sh /home/docker/install_taler_merchant.sh
 
 # Change permissions to execute the script
 RUN chmod +x /home/docker/install_taler_merchant.sh \
@@ -40,4 +40,4 @@ USER docker
 WORKDIR /home/docker
 
 # Use entrypoint to start the script
-ENTRYPOINT ["./install_taler_merchant.sh"]  # Updated entrypoint
+ENTRYPOINT ["sudo", "./install_taler_merchant.sh"]  # Updated entrypoint
