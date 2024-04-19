@@ -39,4 +39,4 @@ USER docker
 WORKDIR /home/docker
 
 # Use entrypoint to start the script
-ENTRYPOINT ["./install_taler_exchange.sh"]
+ENTRYPOINT ["sudo", "./install_taler_exchange.sh"]
